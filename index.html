@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-<img src="https://image.over-blog.com/4x9bCGu8P57_GxJQxIrlx2kGyPA=/fit-in/1600x450/filters:no_upscale()/image%2F6834552%2F20241018%2Fob_2d917b_min-education-nationale-et-jeunesse-rv.jpg" style="position: absolute; top: 10px; left: 10px; width: 200px; height: auto;" alt="Logo">
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +12,7 @@
             padding: 50px;
             position: relative;
         }
-        h1 {
+        h1, h2, h3 {
             color: #2c3e50;
         }
         p {
@@ -48,6 +45,33 @@
         .hidden {
             display: none;
         }
+        /* Conteneur de l'image avec texte en bas */
+        .image-container {
+            position: relative;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        .image-container img {
+            width: 50%; /* Taille moyenne */
+            height: auto;
+            display: block;
+        }
+        .image-container span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            background: rgba(0,0,0,0.5);
+            padding: 5px 0;
+        }
+        /* Liste centrée */
+        ul {
+            display: inline-block; 
+            text-align: left;
+            list-style-position: inside;
+        }
         /* Bouton invisible en bas à droite */
         #secretBtn {
             position: fixed;
@@ -59,18 +83,30 @@
             border: none;
             cursor: pointer;
             z-index: 999;
-        
-ul {
-        display: inline-block; /* transforme la liste en bloc centré */
-        text-align: left;      /* le texte de chaque ligne reste aligné à gauche */
-        list-style-position: inside; /* optionnel : met les puces à l'intérieur du bloc */
-    }
+        }
+        /* Texte en bas du site */
+        #footerText {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            opacity: 0.4;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Image avec texte en bas -->
+    <div class="image-container">
+        <img src="https://image.over-blog.com/4x9bCGu8P57_GxJQxIrlx2kGyPA=/fit-in/1600x450/filters:no_upscale()/image%2F6834552%2F20241018%2Fob_2d917b_min-education-nationale-et-jeunesse-rv.jpg" alt="Ministère">
+        
+    </div>
+
+    <!-- Contenu principal -->
     <div id="welcome">
         <h1>Bienvenue dans le site idéal pour les 6ème en maths !</h1>
-        <h1>Pourquoi tu vas adorer ce site :</h2>
+        <h2>Pourquoi tu vas adorer ce site :</h2>
    
         <h3>💡 Défis de calcul rapides pour devenir un pro du calcul mental !</h3>
         <h3>🧩 Résous des problèmes amusants avec des additions et soustractions</h3>
@@ -82,6 +118,7 @@ ul {
         <button id="startBtn">Commencer</button>
     </div>
 
+    <!-- Quiz -->
     <div id="quiz" class="hidden">
         <div class="question" id="question"></div>
         <div id="options"></div>
@@ -89,8 +126,13 @@ ul {
         <button id="restartBtn" class="hidden">Recommencer</button>
     </div>
 
+    <!-- Bouton secret -->
     <button id="secretBtn" title="Secret"></button>
 
+    <!-- Footer -->
+    <h2 id="footerText">Ce site n’est pas affilié au Ministère de l’Éducation nationale. Le logo est utilisé à des fins de divertissement uniquement.</h2>
+
+    <!-- Script -->
     <script>
         const startBtn = document.getElementById('startBtn');
         const welcome = document.getElementById('welcome');
@@ -177,12 +219,5 @@ ul {
             window.location.href = 'jeu.html';
         });
     </script>
-<h2 style="position: fixed; bottom: 10px; width: 100%; text-align: center; opacity: 0.4; font-size: 16px;">Ce site n’est pas affilié au Ministère de l’Éducation nationale. Le logo est utilisé à des fins de divertissement uniquement.</h2>
-
 </body>
 </html>
-
-
-
-
-
