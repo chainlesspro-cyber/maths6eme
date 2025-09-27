@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA de Maths</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }
+    h1 { color: #333; }
+    .container { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 500px; margin: auto; }
+    input, button { padding: 10px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #ccc; }
+    button { background: #4CAF50; color: white; border: none; cursor: pointer; }
+    button:hover { background: #45a049; }
+    #result { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>IA de Maths</h1>
+
+    <label for="expression">Pose ta question ou écris ton expression :</label>
+    <input type="text" id="expression" placeholder="Ex: combien fait 2+3*5, dérive x^2, 10-3, 8/2, 2 puissance 3">
+
+    <button onclick="compute()">Calculer</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function compute() {
+      let exprInput = document.getElementById("expression").value.toLowerCase();
+      let result;
+
+      // Remplacement des mots par des opérateurs mathématiques
+      exprInput = exprInput
+        .replace(/plus/g, "+")
+        .replace(/moins/g, "-")
+        .replace(/fois/g, "*")
+        .replace(/multiplie par/g, "*")
+        .replace(/divisé par/g, "/")
+        .replace(/sur/g, "/")
+        .replace(/puissance/g, "^");
+
+      try {
+        if (exprInput.startsWith("combien fait")) {
+          const mathExpr = exprInput.replace("combien fait", "").trim();
+          result = math.evaluate(mathExpr);
+        } else if (exprInput.includes("dérive")) {
+          const mathExpr = exprInput.replace("dérive", "").trim();
+          result = math.derivative(mathExpr, 'x').toString();
+        } else if (exprInput.includes("intègre")) {
+          const mathExpr = exprInput.replace("intègre", "").trim();
+          result = math.integral(mathExpr, 'x').toString();
+        } else if (exprInput.includes("résous")) {
+          const mathExpr = exprInput.replace("résous", "").trim();
+          result = math.solve(mathExpr, 'x');
+        } else {
+          // si ce n'est pas une question, on tente un calcul direct
+          result = math.evaluate(exprInput);
+        }
+
+        document.getElementById("result").innerText = "Résultat : " + result;
+      } catch (error) {
+        document.getElementById("result").innerText = "Erreur : " + error;
+      }
+    }
+  </script>
+</body>
+</html>
+
